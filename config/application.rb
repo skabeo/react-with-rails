@@ -11,6 +11,13 @@ module ReactWithRails
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://127.0.0.1:3000'  
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
